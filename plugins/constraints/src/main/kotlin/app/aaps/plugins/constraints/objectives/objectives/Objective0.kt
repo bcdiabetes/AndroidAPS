@@ -4,10 +4,8 @@ import app.aaps.core.interfaces.aps.Loop
 import app.aaps.core.interfaces.db.PersistenceLayer
 import app.aaps.core.interfaces.iob.IobCobCalculator
 import app.aaps.core.interfaces.plugin.ActivePlugin
-import app.aaps.core.interfaces.plugin.PluginBase
 import app.aaps.core.interfaces.pump.VirtualPump
 import app.aaps.core.interfaces.sync.Tidepool
-import app.aaps.database.ValueWrapper
 import app.aaps.plugins.constraints.R
 import dagger.android.HasAndroidInjector
 import javax.inject.Inject
