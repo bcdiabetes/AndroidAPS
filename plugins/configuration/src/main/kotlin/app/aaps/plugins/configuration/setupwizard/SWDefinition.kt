@@ -253,14 +253,14 @@ class SWDefinition @Inject constructor(
             )
             .add(SWBreak(injector))
             .add(
-                SWEditNumber(injector, 3.0, 0.1, 25.0)
+                SWEditNumber(injector, 12.50, 0.1, 25.0)
                     .preference(DoubleKey.SafetyMaxBolus)
                     .updateDelay(5)
                     .label(app.aaps.core.ui.R.string.max_bolus_title)
                     .comment(R.string.common_values)
             )
             .add(
-                SWEditIntNumber(injector, 48, 1, 100)
+                SWEditIntNumber(injector, 50, 1, 100)
                     .preference(IntKey.SafetyMaxCarbs)
                     .updateDelay(5)
                     .label(app.aaps.core.ui.R.string.max_carbs_title)

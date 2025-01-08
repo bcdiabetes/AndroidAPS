@@ -17,7 +17,7 @@ enum class UnitDoubleKey(
     OverviewEatingSoonTarget("eatingsoon_target", 90.0, 72, 160, defaultedBySM = true),
     OverviewActivityTarget("activity_target", 140.0, 108, 180, defaultedBySM = true),
     OverviewHypoTarget("hypo_target", 160.0, 108, 180, defaultedBySM = true),
-    OverviewLowMark("low_mark", 72.0, 25, 160, showInNsClientMode = false, hideParentScreenIfHidden = true),
+    OverviewLowMark("low_mark", 70.0, 25, 160, showInNsClientMode = false, hideParentScreenIfHidden = true),
     OverviewHighMark("high_mark", 180.0, 90, 250, showInNsClientMode = false),
     ApsLgsThreshold("lgsThreshold", 65.0, 65, 120, defaultedBySM = true, dependency = BooleanKey.ApsUseDynamicSensitivity),
     ApsAutoIsfSmbDeliveryRatioBgRange("openapsama_smb_delivery_ratio_bg_range", 0.0, 0, 100, defaultedBySM = true)

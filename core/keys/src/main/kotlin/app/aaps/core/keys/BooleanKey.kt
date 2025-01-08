@@ -76,7 +76,7 @@ enum class BooleanKey(
     VirtualPumpStatusUpload("virtualpump_uploadstatus", false, showInNsClientMode = false),
     GarminLocalHttpServer("communication_http", false, defaultedBySM = true, hideParentScreenIfHidden = true),
     NsClientUploadData("ns_upload", true, showInNsClientMode = false, hideParentScreenIfHidden = true),
-    NsClientAcceptCgmData("ns_receive_cgm", false, showInNsClientMode = false, hideParentScreenIfHidden = true),
+    NsClientAcceptCgmData("ns_receive_cgm", true, showInNsClientMode = false, hideParentScreenIfHidden = true),
     NsClientAcceptProfileStore("ns_receive_profile_store", true, showInNsClientMode = false, hideParentScreenIfHidden = true),
     NsClientAcceptTempTarget("ns_receive_temp_target", false, showInNsClientMode = false, hideParentScreenIfHidden = true),
     NsClientAcceptProfileSwitch("ns_receive_profile_switch", false, showInNsClientMode = false, hideParentScreenIfHidden = true),
