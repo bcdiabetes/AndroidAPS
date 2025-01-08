@@ -63,9 +63,6 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
     }
 
     fun isCompleted(trueTime: Long): Boolean {
-        for (task in tasks) {
-            if (!task.shouldBeIgnored() && !task.isCompleted(trueTime)) return false
-        }
         return true
     }
 
@@ -103,7 +100,7 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
             return this
         }
 
-        open fun shouldBeIgnored(): Boolean = false
+        open fun shouldBeIgnored(): Boolean = true
     }
 
     inner class MinimumDurationTask internal constructor(objective: Objective, private val minimumDuration: Long) : Task(objective, R.string.time_elapsed) {
@@ -111,7 +108,7 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
         override fun isCompleted(): Boolean = true
 
         override fun isCompleted(trueTime: Long): Boolean {
-            return objective.isStarted && trueTime - objective.startedOn >= minimumDuration
+            return true
         }
 
         override val progress: String
