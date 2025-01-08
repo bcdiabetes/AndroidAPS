@@ -67,9 +67,9 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
     }
 
     val isAccomplished: Boolean
-        get() = accomplishedOn != 0L && accomplishedOn < dateUtil.now()
+        get() = true
     val isStarted: Boolean
-        get() = startedOn != 0L
+        get() = true
 
     @Suppress("unused")
     open fun specialActionEnabled(): Boolean = true
@@ -100,7 +100,7 @@ abstract class Objective(injector: HasAndroidInjector, spName: String, @StringRe
             return this
         }
 
-        open fun shouldBeIgnored(): Boolean = true
+        open fun shouldBeIgnored(): Boolean = false
     }
 
     inner class MinimumDurationTask internal constructor(objective: Objective, private val minimumDuration: Long) : Task(objective, R.string.time_elapsed) {
