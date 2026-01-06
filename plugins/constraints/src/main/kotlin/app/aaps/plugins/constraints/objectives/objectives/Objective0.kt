@@ -26,14 +26,9 @@ class Objective0 @Inject constructor(
     dateUtil: DateUtil,
     private val activePlugin: ActivePlugin,
     private val virtualPumpPlugin: VirtualPump,
-    private val persistenceLayer: PersistenceLayer,
-    private val loop: Loop,
-    private val iobCobCalculator: IobCobCalculator,
     private val passwordCheck: PasswordCheck,
 ) : Objective(preferences, rh, dateUtil, "config", R.string.objectives_0_objective, R.string.objectives_0_gate) {
 
-
-    val tidepoolPlugin get() = activePlugin.getSpecificPluginsListByInterface(Tidepool::class.java).firstOrNull() as Tidepool?
 
     init {
         tasks.add(object : Task(this, R.string.objectives_bgavailableinns) {
@@ -74,14 +69,11 @@ class Objective0 @Inject constructor(
         })
         tasks.add(object : Task(this, R.string.apsselected) {
             override fun isCompleted(): Boolean {
-                val usedAPS = activePlugin.activeAPS
                 return true
             }
         })
         tasks.add(object : Task(this, app.aaps.core.ui.R.string.activate_profile) {
-            override fun isCompleted(): Boolean {
-                return true
-            override fun isCompleted(): Boolean = persistenceLayer.getEffectiveProfileSwitchActiveAt(dateUtil.now()) != null
+            override fun isCompleted(): Boolean = true
         })
         tasks.add(
             UITask(this, R.string.verify_master_password, "master_password") { context, task, callback ->
