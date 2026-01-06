@@ -17,8 +17,8 @@ enum class OmnipodBooleanPreferenceKey(
     override val exportable: Boolean = true
 ) : BooleanPreferenceKey {
 
-    BolusBeepsEnabled("AAPS.Omnipod.bolus_beeps_enabled", true),
-    SmbBeepsEnabled("AAPS.Omnipod.smb_beeps_enabled", true),
+    BolusBeepsEnabled("AAPS.Omnipod.bolus_beeps_enabled", false),
+    SmbBeepsEnabled("AAPS.Omnipod.smb_beeps_enabled", false),
     BasalBeepsEnabled("AAPS.Omnipod.basal_beeps_enabled", false),
     TbrBeepsEnabled("AAPS.Omnipod.tbr_beeps_enabled", false),
     ExpirationReminder("AAPS.Omnipod.expiration_reminder_enabled", true),
