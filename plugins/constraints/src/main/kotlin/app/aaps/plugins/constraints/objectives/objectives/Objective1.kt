@@ -4,7 +4,6 @@ import app.aaps.core.interfaces.plugin.ActivePlugin
 import app.aaps.core.interfaces.plugin.PluginBase
 import app.aaps.core.interfaces.resources.ResourceHelper
 import app.aaps.core.interfaces.utils.DateUtil
-import app.aaps.core.keys.BooleanNonKey
 import app.aaps.core.keys.interfaces.Preferences
 import app.aaps.plugins.constraints.R
 import javax.inject.Inject
@@ -18,7 +17,6 @@ class Objective1 @Inject constructor(
     private val activePlugin: ActivePlugin
 ) : Objective(preferences, rh, dateUtil, "usage", R.string.objectives_usage_objective, R.string.objectives_usage_gate) {
 
-    @Inject lateinit var activePlugin: ActivePlugin
     val actionsPlugin: PluginBase
         get() = activePlugin.getSpecificPluginsListByInterface(app.aaps.core.interfaces.actions.Actions::class.java)[0]
 
