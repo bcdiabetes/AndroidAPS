@@ -4,19 +4,35 @@ import app.aaps.core.interfaces.aps.Loop
 import app.aaps.core.interfaces.db.PersistenceLayer
 import app.aaps.core.interfaces.iob.IobCobCalculator
 import app.aaps.core.interfaces.plugin.ActivePlugin
+import app.aaps.core.interfaces.plugin.PluginBase
+import app.aaps.core.interfaces.protection.PasswordCheck
 import app.aaps.core.interfaces.pump.VirtualPump
+import app.aaps.core.interfaces.resources.ResourceHelper
 import app.aaps.core.interfaces.sync.Tidepool
+import app.aaps.core.interfaces.utils.DateUtil
+import app.aaps.core.keys.BooleanKey
+import app.aaps.core.keys.BooleanNonKey
+import app.aaps.core.keys.StringKey
+import app.aaps.core.keys.interfaces.Preferences
+import app.aaps.core.ui.toast.ToastUtils
 import app.aaps.plugins.constraints.R
-import dagger.android.HasAndroidInjector
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class Objective0(injector: HasAndroidInjector) : Objective(injector, "config", R.string.objectives_0_objective, R.string.objectives_0_gate) {
+@Singleton
+class Objective0 @Inject constructor(
+    preferences: Preferences,
+    rh: ResourceHelper,
+    dateUtil: DateUtil,
+    private val activePlugin: ActivePlugin,
+    private val virtualPumpPlugin: VirtualPump,
+    private val persistenceLayer: PersistenceLayer,
+    private val loop: Loop,
+    private val iobCobCalculator: IobCobCalculator,
+    private val passwordCheck: PasswordCheck,
+) : Objective(preferences, rh, dateUtil, "config", R.string.objectives_0_objective, R.string.objectives_0_gate) {
 
-    @Inject lateinit var activePlugin: ActivePlugin
-    @Inject lateinit var virtualPumpPlugin: VirtualPump
-    @Inject lateinit var persistenceLayer: PersistenceLayer
-    @Inject lateinit var loop: Loop
-    @Inject lateinit var iobCobCalculator: IobCobCalculator
+
     val tidepoolPlugin get() = activePlugin.getSpecificPluginsListByInterface(Tidepool::class.java).firstOrNull() as Tidepool?
 
     init {
@@ -65,7 +81,20 @@ class Objective0(injector: HasAndroidInjector) : Objective(injector, "config", R
         tasks.add(object : Task(this, app.aaps.core.ui.R.string.activate_profile) {
             override fun isCompleted(): Boolean {
                 return true
-            }
+            override fun isCompleted(): Boolean = persistenceLayer.getEffectiveProfileSwitchActiveAt(dateUtil.now()) != null
         })
+        tasks.add(
+            UITask(this, R.string.verify_master_password, "master_password") { context, task, callback ->
+                if (preferences.get(StringKey.ProtectionMasterPassword) == "") {
+                    ToastUtils.errorToast(context, app.aaps.core.ui.R.string.master_password_not_set)
+                } else {
+                    passwordCheck.queryPassword(context, app.aaps.core.ui.R.string.master_password, StringKey.ProtectionMasterPassword,
+                                                ok = {
+                                                    task.answered = true
+                                                    callback.run()
+                                                })
+                }
+            }
+        )
     }
 }
