@@ -18,7 +18,7 @@ enum class StringKey(
     override val exportable: Boolean = true
 ) : StringPreferenceKey {
 
-    GeneralUnits("units", "mg/dl"),
+    GeneralUnits("units", "mmol/L"),
     GeneralLanguage("language", "default", defaultedBySM = true),
     GeneralPatientName("patient_name", ""),
     GeneralSkin("skin", ""),
