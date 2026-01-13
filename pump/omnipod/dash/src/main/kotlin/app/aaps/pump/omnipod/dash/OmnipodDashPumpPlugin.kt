@@ -117,9 +117,7 @@ class OmnipodDashPumpPlugin @Inject constructor(
         .pluginName(R.string.omnipod_dash_name)
         .shortName(R.string.omnipod_dash_name_short)
         .preferencesId(PluginDescription.PREFERENCE_SCREEN)
-        .description(R.string.omnipod_dash_pump_description)
-        .enableByDefault(true)
-        .visibleByDefault(true),
+        .description(R.string.omnipod_dash_pump_description),
     ownPreferences = listOf(
         OmnipodBooleanPreferenceKey::class.java, OmnipodIntPreferenceKey::class.java,
         DashBooleanPreferenceKey::class.java, DashStringNonPreferenceKey::class.java

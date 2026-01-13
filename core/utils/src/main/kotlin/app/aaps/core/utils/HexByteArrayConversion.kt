@@ -2,7 +2,7 @@ package app.aaps.core.utils
 
 import java.util.Locale
 
-val HEX_CHARS = "0123456789abcdef".toCharArray()
+private val HEX_CHARS = "0123456789abcdef".toCharArray()
 
 fun ByteArray.toHex() : String{
     val result = StringBuffer()

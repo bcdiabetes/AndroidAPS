@@ -119,7 +119,7 @@ class NSClientService : DaggerService() {
     private var dataCounter = 0
     private var connectCounter = 0
     private var nsEnabled = false
-    private var nsAPISecret = "api-secret-here"
+    private var nsAPISecret = ""
     private var nsDevice = ""
     private val nsHours = 48
     internal var lastAckTime: Long = 0
@@ -128,7 +128,7 @@ class NSClientService : DaggerService() {
 
     var isConnected = false
     var hasWriteAuth = false
-    var nsURL = "https://id.cgm.bcdiabetes.ca"
+    var nsURL = ""
     var latestDateInReceivedData: Long = 0
 
     @SuppressLint("WakelockTimeout")
